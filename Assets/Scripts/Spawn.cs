@@ -21,12 +21,12 @@ public class Spawn : NetworkBehaviour
 
         for (int i = 0; i < MaxCount; i++)
         {
-            var pickup = Instantiate(Template, Vector3.zero, Quaternion.identity/*, transform*/);
+            var pickup = Instantiate(Template, Vector3.zero, Quaternion.identity);
             var netObj = pickup.gameObject.GetComponent<NetworkObject>();
             Debug.Log($"Spawn pickup (pre spawn) nid:{netObj.NetworkObjectId}");
 
             netObj.Spawn();
-            //netObj.TrySetParent(gameObject);
+            netObj.TrySetParent(gameObject);
             pickup.Teleport();
 
             Debug.Log($"Spawn pickup. nid:{netObj.NetworkObjectId}");
